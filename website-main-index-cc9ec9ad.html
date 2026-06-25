@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>leyu · 简明导航 | 场景与指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fff0e6 0%, #fde4d3 50%, #fbd5bd 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1.5rem 3rem;
+            color: #2d2a26;
+            line-height: 1.6;
+        }
+        .page-wrap {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        /* 顶部导航 */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.8rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(6px);
+            border-radius: 60px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+            margin-bottom: 3.5rem;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .nav-brand {
+            font-weight: 600;
+            font-size: 1.4rem;
+            letter-spacing: -0.3px;
+            color: #a5573a;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-size: 0.95rem;
+            color: #4f3e37;
+            font-weight: 450;
+            padding: 0.4rem 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #b1643f;
+            border-bottom-color: #b1643f;
+        }
+
+        /* hero */
+        .hero {
+            text-align: center;
+            margin-bottom: 3.8rem;
+            padding: 1rem 0.5rem;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            color: #3d2c24;
+            margin-bottom: 0.6rem;
+        }
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #6b4f42;
+            max-width: 680px;
+            margin: 0 auto 1.2rem;
+            background: rgba(255,255,240,0.4);
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            display: inline-block;
+        }
+        .hero a {
+            display: inline-block;
+            background: #b1643f;
+            color: #fff;
+            padding: 0.7rem 2.2rem;
+            border-radius: 40px;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 1.1rem;
+            box-shadow: 0 6px 14px rgba(177,100,63,0.25);
+            transition: 0.25s;
+            margin-top: 0.6rem;
+        }
+        .hero a:hover {
+            background: #9b5332;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(177,100,63,0.3);
+        }
+
+        /* 卡片通用 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin: 3rem 0 2rem;
+        }
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 2rem 1.8rem 2.2rem;
+            box-shadow: 0 10px 25px rgba(160, 100, 60, 0.08);
+            transition: 0.2s;
+            border: 1px solid rgba(255, 220, 200, 0.3);
+        }
+        .card:hover {
+            box-shadow: 0 14px 30px rgba(160, 100, 60, 0.12);
+            transform: translateY(-3px);
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 550;
+            color: #3b2b22;
+            margin-bottom: 0.9rem;
+            letter-spacing: -0.3px;
+        }
+        .card p {
+            font-size: 0.98rem;
+            color: #4f3e32;
+            margin-bottom: 0.7rem;
+        }
+        .card .tag {
+            display: inline-block;
+            background: #f0e2d8;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: #5b4238;
+            font-weight: 450;
+            margin-top: 0.6rem;
+        }
+
+        /* 三个场景模块 (更突出) */
+        .scene-section {
+            margin: 3.5rem 0 2.5rem;
+        }
+        .scene-section h2 {
+            font-size: 1.9rem;
+            font-weight: 560;
+            color: #3a2a21;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.3px;
+        }
+        .scene-section .desc {
+            color: #5e4a3e;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            border-left: 4px solid #cb8a67;
+            padding-left: 1rem;
+            background: rgba(255,245,235,0.3);
+            border-radius: 0 12px 12px 0;
+        }
+        .scene-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        @media (max-width: 780px) {
+            .scene-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+            .top-nav {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1rem 1.5rem;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1.2rem;
+            }
+        }
+        .scene-item {
+            background: white;
+            border-radius: 26px;
+            padding: 1.8rem 1.6rem 2rem;
+            box-shadow: 0 6px 18px rgba(130, 80, 50, 0.06);
+            border: 1px solid rgba(255, 215, 190, 0.25);
+            transition: 0.2s;
+        }
+        .scene-item h4 {
+            font-size: 1.3rem;
+            font-weight: 560;
+            margin-bottom: 0.5rem;
+            color: #3b2b22;
+        }
+        .scene-item p {
+            font-size: 0.95rem;
+            color: #4b3a30;
+        }
+        .scene-item .emoji-badge {
+            display: inline-block;
+            font-size: 1.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        /* 常见说明 / FAQ 摘要 */
+        .faq-block {
+            background: rgba(255, 250, 240, 0.5);
+            backdrop-filter: blur(2px);
+            border-radius: 32px;
+            padding: 2rem 2.2rem;
+            margin: 3rem 0 1.8rem;
+            border: 1px solid rgba(200, 150, 120, 0.15);
+        }
+        .faq-block h3 {
+            font-size: 1.5rem;
+            font-weight: 540;
+            margin-bottom: 1.2rem;
+            color: #3a2c22;
+        }
+        .faq-item {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1.2rem;
+        }
+        .faq-q {
+            font-weight: 520;
+            color: #4b362b;
+            font-size: 1rem;
+        }
+        .faq-a {
+            color: #5b4a3e;
+            padding-left: 0.8rem;
+            border-left: 3px solid #dba98b;
+            margin-top: 0.2rem;
+            font-size: 0.95rem;
+        }
+
+        /* 底部 */
+        .footer-note {
+            text-align: center;
+            margin-top: 2.8rem;
+            padding-top: 1.6rem;
+            border-top: 1px solid rgba(200, 160, 130, 0.2);
+            color: #6d5649;
+            font-size: 0.9rem;
+        }
+        .footer-note a {
+            color: #a45f3e;
+            text-decoration: none;
+            font-weight: 480;
+        }
+        .footer-note a:hover {
+            text-decoration: underline;
+        }
+
+        .inline-link {
+            color: #b1643f;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px dotted #cb8a67;
+        }
+        .inline-link:hover {
+            border-bottom-style: solid;
+        }
+
+        .btn-link {
+            display: inline-block;
+            background: #b1643f;
+            color: white;
+            padding: 0.45rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 450;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            margin: 0.1rem 0 0.3rem;
+        }
+        .btn-link:hover {
+            background: #9b5332;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- 顶部导航 -->
+    <nav class="top-nav">
+        <span class="nav-brand">leyu</span>
+        <ul class="nav-links">
+            <li><a href="#">场景</a></li>
+            <li><a href="#">指南</a></li>
+            <li><a href="#">说明</a></li>
+            <li><a href="#">常见</a></li>
+        </ul>
+    </nav>
+
+    <!-- hero 简明介绍 -->
+    <div class="hero">
+        <h1>leyu · 轻量导航</h1>
+        <div class="sub">从简明指南到访问提醒，更快找到方向</div>
+        <p style="max-width: 700px; margin: 0.8rem auto 0.5rem; color: #4d3d32; font-size: 1.02rem;">
+            面向日常场景的索引与提示，保持清晰与高效。使用 <a href="https://website-main-leyu.com" class="inline-link">leyu</a> 作为核心入口，整合常用路径。
+        </p>
+        <a href="https://website-main-leyu.com">leyu</a>
+    </div>
+
+    <!-- 核心介绍 —— 卡片式特点（信息密度稍高） -->
+    <div class="card-grid">
+        <div class="card">
+            <h3>访问提醒</h3>
+            <p>建议使用现代浏览器，开启安全连接。部分环境需允许弹出窗口或存储，以保证流程连续。</p>
+            <p>请确认网络稳定，避免中断造成重复操作。首次访问可留意页面引导。</p>
+            <span class="tag">安全 · 兼容</span>
+        </div>
+        <div class="card">
+            <h3>简明指南</h3>
+            <p>首页结构与导航对应三个主要场景，每个场景均提供要点说明。如需快速定位，可参考页面顶部导航。</p>
+            <p>使用 <a href="https://website-main-leyu.com" class="inline-link">leyu</a> 作为统一标识，便于记忆与返回。</p>
+            <span class="tag">结构 · 索引</span>
+        </div>
+        <div class="card">
+            <h3>信息原则</h3>
+            <p>内容以事实和常规操作为基础，不包含夸大或诱导表述。所有链接指向明确目标场景。</p>
+            <p>遇到不确定的选项时，优先查阅当前页面提供的说明摘要。</p>
+            <span class="tag">真实 · 克制</span>
+        </div>
+    </div>
+
+    <!-- 三个场景模块 -->
+    <div class="scene-section">
+        <h2>三个常用场景</h2>
+        <div class="desc">基于日常访问路径拆分，每个场景包含操作要点</div>
+        <div class="scene-grid">
+            <div class="scene-item">
+                <div class="emoji-badge">📋</div>
+                <h4>信息查阅</h4>
+                <p>快速浏览分类目录，使用筛选或标签定位。适合需要对比、验证或获取摘要的情况。建议先浏览页面结构概览。</p>
+            </div>
+            <div class="scene-item">
+                <div class="emoji-badge">🔗</div>
+                <h4>路径直达</h4>
+                <p>通过固定入口 <a href="https://website-main-leyu.com" class="inline-link">leyu</a> 进入子系统，减少重复跳转。收藏或记住该链接可作为起点。</p>
+                <p style="margin-top: 0.3rem;">部分页面包含附加提示，注意阅读顶部横幅。</p>
+            </div>
+            <div class="scene-item">
+                <div class="emoji-badge">🛡️</div>
+                <h4>配置与确认</h4>
+                <p>调整偏好、确认协议或核对账户状态。每一个步骤前都有确认弹窗或二次提醒，避免误操作。</p>
+                <p>如遇不明选项，可返回场景首页重新阅读说明。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 常见说明 (FAQ 摘要) -->
+    <div class="faq-block">
+        <h3>常见说明 · 摘要</h3>
+        <div class="faq-item">
+            <span class="faq-q">🔹 如何快速回到主场景？</span>
+            <span class="faq-a">页面顶部导航包含“场景”链接，也可直接使用 <a href="https://website-main-leyu.com" class="inline-link">leyu</a> 作为稳定返回点。</span>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">🔹 遇到页面加载或提示异常？</span>
+            <span class="faq-a">优先检查网络与浏览器版本。部分功能依赖本地存储，请勿在隐私模式下屏蔽全部存储。可尝试刷新或清除缓存后重试。</span>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">🔹 内容是否保证实时更新？</span>
+            <span class="faq-a">本页面提供结构指引与常规说明，具体动态数据请以各子系统内实时信息为准。版本更新会同步调整场景卡片。</span>
+        </div>
+        <div style="margin-top: 1.2rem; background: #f4e5db; padding: 0.8rem 1.2rem; border-radius: 40px;">
+            <span style="font-weight: 450;">仍需帮助？</span> 可参考页面内其他说明，或返回 <a href="https://website-main-leyu.com" class="btn-link" style="background: #b1643f; margin-left: 0.5rem;">leyu</a> 获取更多上下文。
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer-note">
+        <p>基于简明指南与访问提醒构建 · 内容保持克制与实用</p>
+        <p style="margin-top: 0.5rem;">场景模块关联 <a href="https://website-main-leyu.com">leyu</a> · 版本迭代以实际界面为准</p>
+    </div>
+</div>
+</body>
+</html>
