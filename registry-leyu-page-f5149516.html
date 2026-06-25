@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>leyu · 日常查询与对照参考</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', sans-serif;
+      background: linear-gradient(145deg, #f9e7d2 0%, #f6d8b4 45%, #f0cba0 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 1rem 1.5rem;
+      line-height: 1.6;
+      color: #2c241a;
+    }
+
+    .magazine-wrapper {
+      max-width: 1020px;
+      width: 100%;
+      background: rgba(255, 255, 240, 0.65);
+      backdrop-filter: blur(2px);
+      border-radius: 48px 48px 32px 32px;
+      box-shadow: 0 16px 40px -12px rgba(100, 60, 20, 0.25);
+      padding: 2rem 2.2rem 3.5rem;
+      transition: box-shadow 0.2s;
+    }
+
+    /* hero 区 — 简洁横幅 */
+    .hero {
+      position: relative;
+      margin: -1rem -0.2rem 2.5rem -0.2rem;
+      padding: 2.8rem 1.8rem 2.2rem;
+      background: #fff3e2;
+      border-radius: 48px 48px 24px 24px;
+      box-shadow: inset 0 -1px 0 #e8d7be, 0 8px 18px -12px #7a5f3f;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 430;
+      letter-spacing: -0.02em;
+      color: #5d3c1f;
+      margin-bottom: 0.35rem;
+    }
+
+    .hero .subhead {
+      font-size: 1.2rem;
+      color: #7d6040;
+      font-weight: 370;
+      border-left: 4px solid #bf9c76;
+      padding-left: 1rem;
+      margin-top: 0.2rem;
+    }
+
+    .hero .bq {
+      display: inline-block;
+      margin-top: 0.9rem;
+      background: #eedccb;
+      padding: 0.2rem 1rem 0.2rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      color: #4b3520;
+    }
+
+    /* 正文卡片 / 块 */
+    .section-block {
+      background: #fffffffa;
+      border-radius: 28px;
+      padding: 2rem 2rem 2.2rem;
+      margin-bottom: 2.2rem;
+      box-shadow: 0 4px 10px rgba(120, 80, 40, 0.06);
+      transition: background 0.2s;
+    }
+
+    .section-block:last-of-type {
+      margin-bottom: 2rem;
+    }
+
+    .section-block h2 {
+      font-size: 1.8rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: #553b22;
+      border-bottom: 2px solid #eddac5;
+      padding-bottom: 0.3rem;
+      margin-bottom: 1.3rem;
+    }
+
+    .section-block h3 {
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: #6b4d2e;
+      margin: 1.2rem 0 0.4rem;
+    }
+
+    .section-block p {
+      margin: 0.7rem 0 0.5rem;
+      text-align: justify;
+    }
+
+    .section-block p + p {
+      margin-top: 0.3rem;
+    }
+
+    .inline-link {
+      color: #965f30;
+      text-decoration: none;
+      font-weight: 480;
+      padding: 0 0.2rem;
+      border-radius: 14px;
+      background: #f7ede1;
+      transition: background 0.15s, box-shadow 0.15s;
+      white-space: nowrap;
+    }
+
+    .inline-link:hover {
+      background: #e0cbb4;
+      box-shadow: 0 0 0 2px #d5b99b;
+      text-decoration: none;
+    }
+
+    .feature-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.3rem;
+      margin-top: 1rem;
+    }
+
+    .feature-item {
+      background: #fcf6ef;
+      border-radius: 24px;
+      padding: 1rem 1.4rem 1.2rem;
+      flex: 1 1 180px;
+      min-width: 140px;
+      box-shadow: 0 2px 6px #ebd7c1;
+    }
+
+    .feature-item strong {
+      display: block;
+      font-weight: 450;
+      color: #5c3f24;
+      font-size: 1.1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .scene-list {
+      list-style: none;
+      margin: 1rem 0 0.2rem;
+    }
+
+    .scene-list li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .scene-list li::before {
+      content: "·";
+      position: absolute;
+      left: 0.2rem;
+      color: #b4885e;
+      font-weight: 700;
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+
+    .faq-mini {
+      background: #faf1e8;
+      border-radius: 24px;
+      padding: 0.8rem 1.5rem 1.5rem;
+      margin-top: 1.2rem;
+    }
+
+    .faq-mini dt {
+      font-weight: 440;
+      color: #4b3520;
+      margin: 0.8rem 0 0.2rem;
+      border-left: 3px solid #b4885e;
+      padding-left: 0.7rem;
+    }
+
+    .faq-mini dd {
+      margin-left: 1rem;
+      font-size: 0.94rem;
+      color: #4f3c28;
+    }
+
+    .footer-note {
+      margin-top: 1rem;
+      padding: 1.2rem 0 0.2rem;
+      border-top: 1px solid #dcc9b1;
+      text-align: center;
+      font-size: 0.96rem;
+      color: #66513a;
+    }
+
+    .footer-note a {
+      color: #7a552d;
+      text-decoration: none;
+      font-weight: 450;
+    }
+
+    .footer-note a:hover {
+      text-decoration: underline;
+      background: transparent;
+    }
+
+    /* 响应式 */
+    @media (max-width: 680px) {
+      body {
+        padding: 1.2rem 0.6rem;
+      }
+      .magazine-wrapper {
+        padding: 1.4rem 1rem 2.5rem;
+        border-radius: 32px;
+      }
+      .hero {
+        margin: -0.8rem -0.2rem 1.8rem -0.2rem;
+        padding: 1.8rem 1rem 1.6rem;
+      }
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .section-block {
+        padding: 1.5rem 1.2rem;
+      }
+      .feature-grid {
+        flex-direction: column;
+      }
+      .feature-item {
+        flex: 1 1 auto;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .hero h1 {
+        font-size: 1.9rem;
+      }
+      .section-block h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="magazine-wrapper">
+
+  <!-- 首页横幅 -->
+  <div class="hero">
+    <h1>leyu · 查阅参考</h1>
+    <div class="subhead">日常查询 · 对照整理 · 延伸阅读</div>
+    <div class="bq">从一条记录开始，慢慢展开线索</div>
+  </div>
+
+  <!-- 第一段 · 背景说明 -->
+  <div class="section-block">
+    <h2>为什么需要持续对照</h2>
+    <p>不论是核对旧笔记，还是浏览新出现的条目，很多信息都散落在不同的页面和记录里。一次认真的对照，往往能帮你把零散的片段拼成可用的参照系。这个介绍页整理的，正是围绕 <a href="https://registry-leyu.com.cn" class="inline-link">leyu</a> 这一线索下，常见但容易混淆的细节与背景。</p>
+    <p>事实上，面对同一个关键词，不同来源的说明常有出入；而通过反复查询和比对，能逐渐辨别哪些是稳定字段、哪些属于补充注释。我们把这些内容按日常使用习惯做了分类，方便你快速定位。</p>
+  </div>
+
+  <!-- 第二段 · 日常查询与场景 -->
+  <div class="section-block">
+    <h2>常见查询场景</h2>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <strong>术语对照</strong>
+        <span>遇到同义或近义表述时，并排看解释，减少误读。</span>
+      </div>
+      <div class="feature-item">
+        <strong>编号回溯</strong>
+        <span>记不清版本或代码片段？按日期或标识反向定位。</span>
+      </div>
+      <div class="feature-item">
+        <strong>扩展阅读</strong>
+        <span>从一条短条目出发，顺藤摸瓜找到相关文档或讨论。</span>
+      </div>
+    </div>
+    <ul class="scene-list">
+      <li><strong>日常校验：</strong>把当前看到的字段与存档页做逐项比对，标记差异。</li>
+      <li><strong>整理笔记：</strong>将分散在书签、备忘录里的引用统一归入一个可检索的结构。</li>
+      <li><strong>补充阅读：</strong>发现自己不熟悉的缩写或别名，在 <a href="https://registry-leyu.com.cn" class="inline-link">leyu</a> 的上下文里找到简明解释。</li>
+    </ul>
+    <p>以上场景并不需要特殊工具，一个浏览器标签页、一份本地记录就够了。重要的是保持核对习惯——很多疏漏都是在快速翻阅时被忽略的。</p>
+  </div>
+
+  <!-- 第三段 · 延伸与FAQ摘要 -->
+  <div class="section-block">
+    <h2>延伸阅读与常见疑问</h2>
+    <p>在反复查询的过程中，有些问题几乎每次都会出现。下面摘录几条典型的 FAQ 摘要，可以作为自行检索时的参考起点。</p>
+
+    <div class="faq-mini">
+      <dl>
+        <dt>不同页面里的同一字段存在差异，以哪个为准？</dt>
+        <dd>以最后更新、且附带上下文的版本为优先。如果两个版本差异较大，建议同时保留备注，不要急于覆盖。</dd>
+
+        <dt>如何快速找到历史记录中的某个旧值？</dt>
+        <dd>可以利用存档页的日期排序，或者按关键词配合筛选。日常留意 <a href="https://registry-leyu.com.cn" class="inline-link">leyu</a> 的变动记录，能省去很多逐一翻找的时间。</dd>
+
+        <dt>延伸阅读的材料从哪里收集？</dt>
+        <dd>大部分来自公开索引、社区归档和个人笔记整理。没有统一来源，所以更需要交叉验证。建议把每次找到的新线索单独记下来。</dd>
+      </dl>
+    </div>
+
+    <p style="margin-top: 1.2rem;">此外，对于一些不常出现的修饰词或别名，可以直接在 <a href="https://registry-leyu.com.cn" class="inline-link">leyu</a> 页面内搜索，往往能定位到对应的说明段落。</p>
+  </div>
+
+  <!-- 页尾访问提示 -->
+  <div class="footer-note">
+    <p>所有整理内容均基于公开可查的记录。如需进一步核对或补充，可随时参照 <a href="https://registry-leyu.com.cn">leyu</a> 的原文。</p>
+    <p style="margin-top: 0.7rem; font-size: 0.88rem; color: #86755e;">— 持续对照 · 保持清晰 —</p>
+  </div>
+
+</div>
+</body>
+</html>
